@@ -17,8 +17,9 @@ public class KeyManager{
     private Handler handler;
     public boolean up, down, left, right, shift, upArrow, downArrow, leftArrow, rightArrow, debugMode, leftClick, rightClick, middleClick, mouseWheelUp, mouseWheelDown, dragging;
     public boolean t, p, r, c, m, tab, esc, backspace, pgUp, pgDown, incTrail, decTrail, planet, sun, blackHole, save, load;
-    public boolean holding, released, buttonPressed;
+    public boolean holding, released, anyKeyPressed;
     public int mX,mY,cX,cY,dX,dY, mXd, mYd;
+    private float alpha, temp;
 
     public Button zoomOutButton;
     public Button zoomInButton;
@@ -36,6 +37,8 @@ public class KeyManager{
     public KeyManager(Handler handler)
     {
         this.handler = handler;
+        this.alpha = 0.0f;
+        this.temp = 0.05f;
         initButtons();
         initListeners();
 
@@ -54,6 +57,13 @@ public class KeyManager{
 
     public void tick(Camera cam)
     {
+        if(handler.getApplication().isMenu){
+            if(Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)){
+                handler.getApplication().menuExit = true;
+                handler.getApplication().menuEnter = false;
+            }
+        }
+
         up = Gdx.input.isKeyPressed(Input.Keys.W);
         down = Gdx.input.isKeyPressed(Input.Keys.S);
         left = Gdx.input.isKeyPressed(Input.Keys.A);
@@ -118,36 +128,72 @@ public class KeyManager{
                 middleClick = false;
             }
         }
+
+
+        if(alpha <= 0.99f && !handler.getApplication().menu && !handler.getApplication().isMenu){
+            zoomInButton.setColor(1.0f,1.0f,1.0f,alpha);
+            zoomOutButton.setColor(1.0f,1.0f,1.0f,alpha);
+            setCameraButton.setColor(1.0f,1.0f,1.0f,alpha);
+            debugButton.setColor(1.0f,1.0f,1.0f,alpha);
+            trailButton.setColor(1.0f,1.0f,1.0f,alpha);
+            muteButton.setColor(1.0f,1.0f,1.0f,alpha);
+            planetButton.setColor(1.0f,1.0f,1.0f,alpha);
+            sunButton.setColor(1.0f,1.0f,1.0f,alpha);
+            blackHoleButton.setColor(1.0f,1.0f,1.0f,alpha);
+            resetButton.setColor(1.0f,1.0f,1.0f,alpha);
+            resetCamButton.setColor(1.0f,1.0f,1.0f,alpha);
+            alpha += temp;
+            temp /= 1.05f;
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            Gdx.app.exit();
     }
 
     private void initButtons(){
         float scale = handler.getHeight() / 720.0f;
         float xPad = handler.getWidth() - (100 * scale);
 
+
         zoomInButton = new ImageButton(Textures.zoomInDrawable);
         zoomInButton.setPosition(xPad, handler.getHeight() - (100 * scale));
+        zoomInButton.setColor(1.0f,1.0f,1.0f,alpha);
         zoomOutButton = new ImageButton(Textures.zoomOutDrawable);
         zoomOutButton.setPosition(xPad, handler.getHeight() - (150 * scale));
+        zoomOutButton.setColor(1.0f,1.0f,1.0f, alpha);
         setCameraButton = new ImageButton(Textures.setCameraDrawable);
         setCameraButton.setPosition(xPad, handler.getHeight() - (230 * scale));
+        setCameraButton.setColor(1.0f,1.0f,1.0f, alpha);
         debugButton = new ImageButton(Textures.debugDrawable);
         debugButton.setPosition(xPad, handler.getHeight() - (280 * scale));
+        debugButton.setColor(1.0f,1.0f,1.0f, alpha);
         trailButton = new ImageButton(Textures.trailDrawable);
         trailButton.setPosition(xPad, handler.getHeight() - (330 * scale));
+        trailButton.setColor(1.0f,1.0f,1.0f, alpha);
         muteButton = new ImageButton(Textures.muteBDrawable);
         muteButton.setPosition(xPad, handler.getHeight() - (380 * scale));
+        muteButton.setColor(1.0f,1.0f,1.0f, alpha);
+
         //Object Buttons
         planetButton = new ImageButton(Textures.planetBDrawable);
         planetButton.setPosition(xPad, handler.getHeight() - (460 * scale));
+        planetButton.setColor(1.0f,1.0f,1.0f, alpha);
         sunButton = new ImageButton(Textures.sunBDrawable);
         sunButton.setPosition(xPad, handler.getHeight() - (510 * scale));
+        sunButton.setColor(1.0f,1.0f,1.0f, alpha);
         blackHoleButton = new ImageButton(Textures.holeBDrawable);
         blackHoleButton.setPosition(xPad, handler.getHeight() - (560 * scale));
+        blackHoleButton.setColor(1.0f,1.0f,1.0f, alpha);
+
 
         resetButton = new ImageButton(Textures.resetDrawable);
         resetButton.setPosition(xPad, handler.getHeight() - (640 * scale));
+        resetButton.setColor(1.0f,1.0f,1.0f, alpha);
+
         resetCamButton = new ImageButton(Textures.resetCamDrawable);
         resetCamButton.setPosition(xPad, handler.getHeight() - (690 * scale));
+        resetCamButton.setColor(1.0f,1.0f,1.0f, alpha);
+
 
         zoomInButton.setSize(zoomInButton.getWidth() * scale, zoomInButton.getHeight() * scale);
         zoomOutButton.setSize(zoomInButton.getWidth(), zoomInButton.getHeight());

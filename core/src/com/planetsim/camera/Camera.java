@@ -5,15 +5,15 @@ import com.planetsim.game.PlanetSim;
 import com.planetsim.universe.Universe;
 import com.planetsim.game.Handler;
 
-public class Camera implements java.io.Serializable
+public class Camera
 {
-    private final int ZOOM_MAX = 1000;
+    private final int ZOOM_MAX = 5000;
     private final int ZOOM_MIN = 1;
 
     private PlanetSim app;
     private Handler handler;
     private float xOffset, yOffset;
-    private int zoomLevel;
+    private float zoomLevel;
     private OrthographicCamera camera;
     public int planet;
 
@@ -64,7 +64,7 @@ public class Camera implements java.io.Serializable
         this.yOffset = yOffset;
     }
 
-    public int getZoomLevel()
+    public float getZoomLevel()
     {
         return this.zoomLevel;
     }
@@ -75,19 +75,9 @@ public class Camera implements java.io.Serializable
     public float getYPos(){return camera.position.y + ((camera.viewportHeight / 2) * (camera.zoom));}
 
 
-    public void setZoomLevel(int z)
+    public void setZoomLevel(float z)
     {
-        if(z < ZOOM_MIN)
-            z = ZOOM_MIN;
-        if(z > ZOOM_MAX)
-            z = ZOOM_MAX;
-        if(zoomLevel < z)
-            for(int i = 0; i <= z - zoomLevel; i++)
-                zoomIn();
-        else
-        if(zoomLevel > z)
-            for(int i = 0; i <= zoomLevel - z; i++)
-                zoomOut();
+        this.zoomLevel = z;
     }
 
     //zooms towards the centre of the screen
@@ -99,6 +89,13 @@ public class Camera implements java.io.Serializable
             //this.yOffset = (float) (yOffset) - ((app.getHeight()/2));
             camera.zoom -= 1.0f / 9.0f;
             this.zoomLevel--;
+        }
+    }
+
+    public void zoomInWithStyle(float x) {
+        if(zoomLevel > ZOOM_MIN) {
+            camera.zoom -= x / 9.0f;
+            this.zoomLevel -= x;
         }
     }
 

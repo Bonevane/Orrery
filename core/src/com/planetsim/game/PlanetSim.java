@@ -30,6 +30,9 @@ public class PlanetSim extends ApplicationAdapter{
 	private ShapeRenderer g;
 	private BitmapFont font;
 	private BitmapFont font2;
+	private BitmapFont futura;
+	private BitmapFont futuraB;
+
 	private SpriteBatch batch;
 	private Textures textures;
 	public static Stage stage;
@@ -41,7 +44,6 @@ public class PlanetSim extends ApplicationAdapter{
 	private InputMultiplexer multiplexer;
 
 	//States
-	public State menuState;
 	public State universeState;
 
 	//Camera
@@ -61,11 +63,15 @@ public class PlanetSim extends ApplicationAdapter{
 	public SaveState saveFile;
 
 
+	private float menuZoom, menuAlpha;
+	public boolean isMenu, menu, menuEnter, menuExit;
+	private boolean menuTemp;
+
+
 
 	public PlanetSim() {}
 
-	private void init()
-	{
+	private void init() {
 		this.width = Gdx.graphics.getWidth();
 		initialWidth = width;
 		this.height = Gdx.graphics.getHeight();
@@ -75,6 +81,9 @@ public class PlanetSim extends ApplicationAdapter{
 		this.handler = new Handler(this);
 		this.controller = new Controller(handler);
 		this.handler.setController(controller);
+		this.menu = false;
+		this.isMenu = true;
+		this.menuEnter = true;
 
 		textures = new Textures();
 		stage = new Stage(new ScreenViewport());
@@ -99,8 +108,7 @@ public class PlanetSim extends ApplicationAdapter{
 		State.setState(universeState);
 	}
 
-	private void tick()
-	{
+	private void tick() {
 		keyManager.tick(camera);
 		camera.setCamToOrbit();
 		if(State.getState() != null)
@@ -118,15 +126,36 @@ public class PlanetSim extends ApplicationAdapter{
 		keyManager = new KeyManager(handler);
 		font = new BitmapFont();//Gdx.files.internal("font.fnt"));
 		font2 = new BitmapFont(Gdx.files.internal("font.fnt"));
+		futura = new BitmapFont(Gdx.files.internal("futura.fnt"));
+		futuraB = new BitmapFont(Gdx.files.internal("futuraB.fnt"));
 		defaultProjection = new Matrix4(batch.getProjectionMatrix());
 		bgm = Gdx.audio.newMusic(Gdx.files.internal("Glory.ogg"));
 		bgm.play(); bgm.setLooping(true);
 		collision = Gdx.audio.newSound(Gdx.files.internal("selection.ogg"));
+
+		saveFile.loadMenu();
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
+
+		if(menu){
+			if (handler.getCamera().getZoomLevel() > 353) {
+				handler.getCamera().zoomInWithStyle(menuZoom);
+
+				if(menuZoom < 7.3f && !menuTemp)
+					menuZoom+= 0.1f;
+				else if (menuZoom > 0){
+					menuZoom-= 0.1f;
+					menuTemp = true;
+				}
+
+				if (handler.getCamera().getZoomLevel() <= 353 || Gdx.input.isTouched()){
+					this.menu = false; camera.planet = -1;
+				}
+			}
+		}
 
 		batch.dispose();
 		batch = new SpriteBatch();
@@ -176,6 +205,30 @@ public class PlanetSim extends ApplicationAdapter{
 
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
+
+		if(isMenu){
+			batch.begin();
+
+			if(menuEnter){
+				futuraB.setColor(0.9f, 0.9f, 0.9f, menuAlpha);
+				futura.setColor(0.8f, 0.8f, 0.8f, menuAlpha);
+				if(menuAlpha < 1.0f) menuAlpha += 0.01f;
+			}
+
+			if (menuExit) {
+				futuraB.setColor(0.9f, 0.9f, 0.9f, menuAlpha);
+				futura.setColor(0.8f, 0.8f, 0.8f, menuAlpha);
+				if(menuAlpha > 0.0f) menuAlpha -= 0.01f;
+				if(menuAlpha <= 0.0f) {
+					isMenu = false; menu = true;
+				}
+			}
+
+			futuraB.draw(batch, "ORRERY", 180, height - 180);
+			futura.draw(batch, "Press Any Key to Begin", 190, height - 280);
+			batch.end();
+		}
+
 
 		tick();
 	}

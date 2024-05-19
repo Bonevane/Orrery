@@ -17,7 +17,7 @@ public class Universe
 
     private Handler handler;
     private ArrayList<Entity> entities;
-    public static int trailSize = 100;
+    public static int trailSize = 200;
 
 
     private SpriteBatch batch;
@@ -62,7 +62,7 @@ public class Universe
         this.entities.clear();
         handler.getCamera().cameraReset();
         GRAVITATIONAL_CONSTANT = 6.674f;
-        trailSize = 100;
+        trailSize = 200;
     }
 
     public void tick()

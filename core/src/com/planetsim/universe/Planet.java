@@ -112,7 +112,7 @@ public class Planet extends Entity
         for(int i = 0; i < handler.getUniverse().getEntities().size(); i++){
             if(handler.getUniverse().getEntities().get(i).getClass().getSimpleName().equalsIgnoreCase("star")){
                 sunAngle = -(float)Math.toDegrees(Math.atan(((handler.getUniverse().getEntities().get(i).drawXCenter - this.drawXCenter) / (handler.getUniverse().getEntities().get(i).drawYCenter - this.drawYCenter))));// + 10.0f;
-                sunDist = (float)Math.sqrt((Math.pow((handler.getUniverse().getEntities().get(i).drawXCenter - Math.abs(this.drawXCenter)), 2.0) + Math.pow((handler.getUniverse().getEntities().get(i).drawYCenter - Math.abs(this.drawYCenter)), 2.0))) - (float)handler.getUniverse().getEntities().get(i).radius;
+                sunDist = (float)Math.sqrt((Math.pow((handler.getUniverse().getEntities().get(i).drawXCenter - Math.abs(this.drawXCenter)), 2.0) + Math.pow((handler.getUniverse().getEntities().get(i).drawYCenter - Math.abs(this.drawYCenter)), 2.0))) ;//- (float)handler.getUniverse().getEntities().get(i).radius;
 
                 if(handler.getUniverse().getEntities().get(i).y - this.y < 0){
                  sunAngle += 180;
@@ -189,7 +189,7 @@ public class Planet extends Entity
                 //else
                 //{
                     //g.drawOval(drawX1-2, drawY1-2, 5, 5);
-                g.rectLine(drawX1, drawY1, drawX2, drawY2, 2);// * handler.getCamera().getZoomLevel()  / 9.0f + (8.0f / 9.0f));
+                g.rectLine(drawX1, drawY1, drawX2, drawY2,  handler.getCamera().getZoomLevel()  / 9.0f + (8.0f / 9.0f));
                 //}
             }
         }

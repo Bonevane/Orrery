@@ -45,7 +45,7 @@ public class SaveState{
         }
     }
 
-    public void loadState(){
+    public void loadState(String saveL){
         String name;
         double vX, vY;
         float x, y;
@@ -54,13 +54,13 @@ public class SaveState{
         handler.getUniverse().reset();
 
         try{
-            File save = new File("save.txt");
+            File save = new File(saveL);
             Scanner reader = new Scanner(save);
 
             handler.getApplication().getCamera().getCamera().zoom = Float.parseFloat(reader.nextLine());
             handler.getApplication().getCamera().getCamera().position.x = Float.parseFloat(reader.nextLine());
             handler.getApplication().getCamera().getCamera().position.y = Float.parseFloat(reader.nextLine());
-            handler.getApplication().getCamera().setZoomLevel(Integer.parseInt(reader.nextLine()));
+            handler.getApplication().getCamera().setZoomLevel(Float.parseFloat(reader.nextLine()));
 
             while (reader.hasNextLine()) {
                 name = reader.nextLine();
@@ -89,5 +89,11 @@ public class SaveState{
             System.out.println("Error when Creating / Loading file.");
             return;
         }
+    }
+
+    public void loadMenu(){
+        loadState("Menu.txt");
+
+        handler.getApplication().getCamera().planet = 0;
     }
 }

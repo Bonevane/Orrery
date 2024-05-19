@@ -32,6 +32,7 @@ public class Controller
     public Controller(Handler handler)
     {
         this.handler = handler;
+        this.drawTails = true;
         this.x = 0;
         this.y = 0;
         this.lastMX = 0;
@@ -236,7 +237,7 @@ public class Controller
             handler.getKeyManager().save = false;
         }
         if(handler.getKeyManager().load) {
-            handler.getApplication().saveFile.loadState();
+            handler.getApplication().saveFile.loadState("save.txt");
             handler.getKeyManager().load = false;
         }
     }

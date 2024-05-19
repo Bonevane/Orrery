@@ -52,7 +52,8 @@ public class Textures{
     public static Texture holeB;
     public static TextureRegion holeBRegion;
     public static TextureRegionDrawable holeBDrawable;
-    Textures(){
+
+    Textures() {
         background = new Texture(Gdx.files.internal("background.jpg"));
         planetTex = new Texture(Gdx.files.internal("planet.png"));
         planetTex2 = new Texture(Gdx.files.internal("planet2.png"));
@@ -70,43 +71,43 @@ public class Textures{
         zoomInRegion = new TextureRegion(zoomIn);
         zoomInDrawable = new TextureRegionDrawable(zoomInRegion);
 
-        zoomOut = new Texture(Gdx.files.internal("bucket.png"));
+        zoomOut = new Texture(Gdx.files.internal("ZoomOut.png"));
         zoomOutRegion = new TextureRegion(zoomOut);
         zoomOutDrawable = new TextureRegionDrawable(zoomOutRegion);
 
-        setCamera = new Texture(Gdx.files.internal("bucket.png"));
+        setCamera = new Texture(Gdx.files.internal("CameraOrbit.png"));
         setCameraRegion = new TextureRegion(setCamera);
         setCameraDrawable = new TextureRegionDrawable(setCameraRegion);
 
-        debug = new Texture(Gdx.files.internal("bucket.png"));
+        debug = new Texture(Gdx.files.internal("DebugMenu.png"));
         debugRegion = new TextureRegion(debug);
         debugDrawable = new TextureRegionDrawable(debugRegion);
 
-        trail = new Texture(Gdx.files.internal("bucket.png"));
+        trail = new Texture(Gdx.files.internal("TrailToggle.png"));
         trailRegion = new TextureRegion(trail);
         trailDrawable = new TextureRegionDrawable(trailRegion);
 
-        muteB = new Texture(Gdx.files.internal("bucket.png"));
+        muteB = new Texture(Gdx.files.internal("MuteButton.png"));
         muteBRegion = new TextureRegion(muteB);
         muteBDrawable = new TextureRegionDrawable(muteBRegion);
 
-        reset = new Texture(Gdx.files.internal("bucket.png"));
+        reset = new Texture(Gdx.files.internal("ResetUniverse.png"));
         resetRegion = new TextureRegion(reset);
         resetDrawable = new TextureRegionDrawable(resetRegion);
 
-        resetCam = new Texture(Gdx.files.internal("bucket.png"));
+        resetCam = new Texture(Gdx.files.internal("ResetCamera.png"));
         resetCamRegion = new TextureRegion(resetCam);
         resetCamDrawable = new TextureRegionDrawable(resetCamRegion);
 
-        planetB = new Texture(Gdx.files.internal("bucket.png"));
+        planetB = new Texture(Gdx.files.internal("AddPlanet.png"));
         planetBRegion = new TextureRegion(planetB);
         planetBDrawable = new TextureRegionDrawable(planetBRegion);
 
-        sunB = new Texture(Gdx.files.internal("bucket.png"));
+        sunB = new Texture(Gdx.files.internal("AddStar.png"));
         sunBRegion = new TextureRegion(sunB);
         sunBDrawable = new TextureRegionDrawable(sunBRegion);
 
-        holeB = new Texture(Gdx.files.internal("bucket.png"));
+        holeB = new Texture(Gdx.files.internal("AddBlackHole.png"));
         holeBRegion = new TextureRegion(holeB);
         holeBDrawable = new TextureRegionDrawable(holeBRegion);
     }

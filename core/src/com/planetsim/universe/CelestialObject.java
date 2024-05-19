@@ -90,10 +90,10 @@ public class CelestialObject extends Entity
             //g.fillOval((int)positions.get(i).getX()-5, (int)positions.get(i).getY()-5, 10, 10);
             if(i != 0)
             {
-                int drawX1 = (int)(positions.get(i).getX()-handler.getCamera().getxOffset()) / handler.getCamera().getZoomLevel();
-                int drawY1 = (int)(positions.get(i).getY()-handler.getCamera().getyOffset()) / handler.getCamera().getZoomLevel();
-                int drawX2 = (int)(positions.get(i-1).getX()-handler.getCamera().getxOffset()) / handler.getCamera().getZoomLevel();
-                int drawY2 = (int)(positions.get(i-1).getY()-handler.getCamera().getyOffset()) / handler.getCamera().getZoomLevel();
+                int drawX1 = (int)(positions.get(i).getX()-handler.getCamera().getxOffset()) / (int)handler.getCamera().getZoomLevel();
+                int drawY1 = (int)(positions.get(i).getY()-handler.getCamera().getyOffset()) / (int)handler.getCamera().getZoomLevel();
+                int drawX2 = (int)(positions.get(i-1).getX()-handler.getCamera().getxOffset()) / (int)handler.getCamera().getZoomLevel();
+                int drawY2 = (int)(positions.get(i-1).getY()-handler.getCamera().getyOffset()) / (int)handler.getCamera().getZoomLevel();
                 //if the line is on screen
                 if((drawX1<0 || drawX1>handler.getWidth()) || (drawY1<0 || drawY1>handler.getHeight()))
                     continue;

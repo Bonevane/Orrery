@@ -52,9 +52,9 @@ public class Gestures extends InputAdapter implements GestureListener {
     public boolean zoom (float originalDistance, float currentDistance){
 
         if (originalDistance >= currentDistance) {
-            handler.getCamera().zoomIn();
-        } else {
             handler.getCamera().zoomOut();
+        } else {
+            handler.getCamera().zoomIn();
         }
         return false;
     }
