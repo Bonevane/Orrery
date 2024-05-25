@@ -4,10 +4,10 @@ import com.badlogic.gdx.utils.Array;
 
 public class Vector
 {
-    private double magnitude;// magnitude overall (hypotenuse of the triangle the vector makes)
-    private double direction; //0-360 (in degrees) in a circle around the entity(I.E what direction the vector is pointing in)
-    private double x; //x value diff (magnitude in the x direction)
-    private double y; //y value diff (magnitude in the y direction)
+    private double magnitude; // Overall Magnitued
+    private double direction; // 0-360 (in degrees) in a circle around the entity
+    private double x; // x value difference (magnitude in the x direction)
+    private double y; //y value difference (magnitude in the y direction)
 
     public Vector()
     {
@@ -85,7 +85,7 @@ public class Vector
     {
         this.y = Math.sin(Math.toRadians(this.direction)) * this.magnitude;
         this.x = Math.cos(Math.toRadians(this.direction)) * this.magnitude;
-        this.y *= -1; //flipping y axis because shit java coordinates ayy lmao
+        this.y *= -1;
     }
 
     public void calculateDirection()
@@ -114,10 +114,9 @@ public class Vector
         calculateDirection();
     }
 
-    public void add(Array<Vector> v) //adds all the vectors together including the original object
+    public void add(Array<Vector> v)
     {
-        for(int i = 0; i < v.size; i++)
-        {
+        for(int i = 0; i < v.size; i++) {
             this.x += v.get(i).getX();
             this.y += v.get(i).getY();
         }

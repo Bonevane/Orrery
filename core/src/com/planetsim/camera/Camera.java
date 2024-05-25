@@ -80,7 +80,7 @@ public class Camera
         this.zoomLevel = z;
     }
 
-    //zooms towards the centre of the screen
+    // Zooms towards the centre of the screen
     public void zoomIn()
     {
         if(zoomLevel > ZOOM_MIN)
@@ -99,7 +99,7 @@ public class Camera
         }
     }
 
-    //zooms away from the center of the screen
+    // Zooms away from the center of the screen
     public void zoomOut()
     {
         if(zoomLevel < ZOOM_MAX)

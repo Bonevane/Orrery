@@ -8,12 +8,11 @@ import com.planetsim.game.Handler;
 import com.planetsim.game.PlanetSim;
 import com.planetsim.game.Textures;
 
-//the universe the sim is in
-//holds all the entities / does updates on their movements.
+// The universe the sim is in
+// Holds all the entities / does updates on their movements.
 public class Universe
 {
-    //CHANGE THIS TO DETERMINE HOW FAST OBJECTS MOVE
-    public float GRAVITATIONAL_CONSTANT = 6.674f; //Higher number = faster but more inaccurate simulation. Lower number = slower but more accurate.
+    public float GRAVITATIONAL_CONSTANT = 6.674f;
 
     private Handler handler;
     private ArrayList<Entity> entities;
@@ -67,19 +66,15 @@ public class Universe
 
     public void tick()
     {
-        //collisionDetection();
         for(int i = 0; i < entities.size(); i++)
             entities.get(i).tick();
     }
 
     public void render(ShapeRenderer g)
     {
-        //filling in background
         drawBackground(g);
 
-        //rendering entities
         for(int i = 0; i < entities.size(); i++)
-            //if the planet is on screen, then render it
             if(entities.get(i).isVisible())
                 entities.get(i).render(g);
     }
@@ -119,10 +114,5 @@ public class Universe
         }
         g.setProjectionMatrix(handler.getCamera().getCamera().combined);
         g.end();
-
-        //g.begin(ShapeRenderer.ShapeType.Filled);
-        //g.setColor(Color.BLACK);
-        //g.rect(0, 0, handler.getWidth(), handler.getHeight());
-        //g.end();
     }
 }

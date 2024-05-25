@@ -112,7 +112,6 @@ public abstract class Entity
 
         Vector totalGravForce = new Vector();
 
-        //for(Entity e : handler.getUniverse().getEntities())
         for(int i = handler.getUniverse().getEntities().size()-1; i >= 0; i--)
         {
             Entity e = handler.getUniverse().getEntities().get(i);
@@ -120,14 +119,15 @@ public abstract class Entity
             xDist = e.getX() - x;
             yDist = e.getY() - y;
             distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
-            //collision detection
+
+            //Collision detection
             if(distance < this.radius + e.getRadius()) this.collide(e);
             else
             {
                 forceMag = handler.getUniverse().GRAVITATIONAL_CONSTANT * ((this.mass * e.getMass()) / Math.pow(distance, 2));
                 nextStep = (forceMag / this.mass) + (forceMag / e.getMass());
 
-                //next step collision detection
+                //Next step collision detection
                 if(distance < nextStep) this.collide(e);
                 else
                 {
@@ -144,9 +144,6 @@ public abstract class Entity
     //moves the entity based on the attraction vector
     private void applyAttractionVector()
     {
-        //Force = mass*acceleration :: acceleration = force/mass
-        //velocity = meters / second :: acceleration = meters / second / second
-        // SO: velocity changes by the acceleration every tick.
         if(!handler.getController().pausedGame)
         {
             this.acceleration.setVect((netForce.getX()/this.mass), (netForce.getY()/this.mass));
@@ -154,11 +151,6 @@ public abstract class Entity
             this.velocity.add(acceleration);
             this.x += velocity.getX();
             this.y += velocity.getY();
-//			if(Application.FPS <= 60)
-//			{
-//				this.x += velocity.getX() * (60.0 / Application.FPS);
-//				this.y += velocity.getY() * (60.0 / Application.FPS);
-//			}
         }
         updateDrawPosition();
     }

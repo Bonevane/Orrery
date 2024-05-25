@@ -10,7 +10,7 @@ import com.planetsim.game.Textures;
 
 public class Planet extends Entity
 {
-    protected int rand; //random direction for the AI
+    protected int rand;
     protected int special;
     protected Color color;
     public Color color1;
@@ -79,7 +79,7 @@ public class Planet extends Entity
     @Override
     public void tick() {
         calculateAttraction();
-        if (!handler.getController().pausedGame)//just so the trail doesn't disappear while paused
+        if (!handler.getController().pausedGame) // Just so the trail doesn't disappear while paused
         {
             addPositions();
             removePositions();
@@ -90,8 +90,8 @@ public class Planet extends Entity
     public void render(ShapeRenderer g)
     {
         g.begin(ShapeRenderer.ShapeType.Filled);
-        //drawX / drawY effected by zoom
-        int zoomDiameter = (int) radius * 2;//(radius/handler.getCamera().getZoomLevel())*2;
+
+        int zoomDiameter = (int) radius * 2;
         g.setColor(color);
         if(zoomDiameter >= 2)
             g.circle((int)(drawX), (int)(drawY), zoomDiameter / 2.0f);
@@ -121,7 +121,6 @@ public class Planet extends Entity
 
                 sunAlpha = (float)(handler.getUniverse().getEntities().get(i).radius / sunDist) * 3;
                 System.out.println(sunAlpha);
-                //break;
             }
         }
 

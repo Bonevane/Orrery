@@ -18,7 +18,6 @@ public abstract class State
         return currentState;
     }
 
-    //CLASS
 
     protected Handler handler;
 
