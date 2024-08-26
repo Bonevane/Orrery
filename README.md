@@ -1,5 +1,5 @@
 # Orrery
-A 2D Gravity Simulator in Java.
+A 2D universe sandbox in Java.
 
 ## Controls:
 - WASD or ARROW KEYS - Move the camera
