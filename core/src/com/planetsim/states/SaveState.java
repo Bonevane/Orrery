@@ -45,7 +45,7 @@ public class SaveState{
         }
     }
 
-    public void loadState(String saveL){
+    public void loadState(){
         String name;
         double vX, vY;
         float x, y;
@@ -54,7 +54,7 @@ public class SaveState{
         handler.getUniverse().reset();
 
         try{
-            File save = new File(saveL);
+            File save = new File("save.txt");
             Scanner reader = new Scanner(save);
 
             handler.getApplication().getCamera().getCamera().zoom = Float.parseFloat(reader.nextLine());
@@ -92,7 +92,7 @@ public class SaveState{
     }
 
     public void loadMenu(){
-        loadState("Menu.txt");
+        loadState();
 
         handler.getApplication().getCamera().planet = 0;
     }

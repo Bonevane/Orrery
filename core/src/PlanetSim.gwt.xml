@@ -2,4 +2,8 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit trunk//EN" "https://www.gwtproject.org/doctype/2.10.0/gwt-module.dtd">
 <module>
 	<source path="com/planetsim/game" />
+	<source path="com/planetsim/camera" />
+	<source path="com/planetsim/input" />
+	<source path="com/planetsim/states" />
+	<source path="com/planetsim/universe" />
 </module>

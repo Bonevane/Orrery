@@ -71,7 +71,8 @@ public class PlanetSim extends ApplicationAdapter{
 
 	public PlanetSim() {}
 
-	private void init() {
+	private void init()
+	{
 		this.width = Gdx.graphics.getWidth();
 		initialWidth = width;
 		this.height = Gdx.graphics.getHeight();
@@ -108,7 +109,8 @@ public class PlanetSim extends ApplicationAdapter{
 		State.setState(universeState);
 	}
 
-	private void tick() {
+	private void tick()
+	{
 		keyManager.tick(camera);
 		camera.setCamToOrbit();
 		if(State.getState() != null)
@@ -131,9 +133,8 @@ public class PlanetSim extends ApplicationAdapter{
 		defaultProjection = new Matrix4(batch.getProjectionMatrix());
 		bgm = Gdx.audio.newMusic(Gdx.files.internal("Glory.ogg"));
 		bgm.play(); bgm.setLooping(true);
-		collision = Gdx.audio.newSound(Gdx.files.internal("selection.ogg"));
 
-		saveFile.loadMenu();
+		//saveFile.loadMenu();
 	}
 
 	@Override
@@ -141,20 +142,7 @@ public class PlanetSim extends ApplicationAdapter{
 		ScreenUtils.clear(0, 0, 0, 1);
 
 		if(menu){
-			if (handler.getCamera().getZoomLevel() > 353) {
-				handler.getCamera().zoomInWithStyle(menuZoom);
-
-				if(menuZoom < 7.3f && !menuTemp)
-					menuZoom+= 0.1f;
-				else if (menuZoom > 0){
-					menuZoom-= 0.1f;
-					menuTemp = true;
-				}
-
-				if (handler.getCamera().getZoomLevel() <= 353 || Gdx.input.isTouched()){
-					this.menu = false; camera.planet = -1;
-				}
-			}
+			this.menu = false;
 		}
 
 		batch.dispose();

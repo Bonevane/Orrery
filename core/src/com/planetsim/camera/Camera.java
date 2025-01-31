@@ -10,7 +10,7 @@ public class Camera
     private final int ZOOM_MAX = 5000;
     private final int ZOOM_MIN = 1;
 
-    private PlanetSim app;
+
     private Handler handler;
     private float xOffset, yOffset;
     private float zoomLevel;
@@ -20,7 +20,6 @@ public class Camera
     public Camera(PlanetSim app, Universe universe, Handler handler)
     {
         camera = new OrthographicCamera();
-        this.app = app;
         this.handler = handler;
         this.xOffset = 0;
         this.yOffset = 0;
@@ -80,7 +79,7 @@ public class Camera
         this.zoomLevel = z;
     }
 
-    // Zooms towards the centre of the screen
+    //zooms towards the centre of the screen
     public void zoomIn()
     {
         if(zoomLevel > ZOOM_MIN)
@@ -99,7 +98,7 @@ public class Camera
         }
     }
 
-    // Zooms away from the center of the screen
+    //zooms away from the center of the screen
     public void zoomOut()
     {
         if(zoomLevel < ZOOM_MAX)

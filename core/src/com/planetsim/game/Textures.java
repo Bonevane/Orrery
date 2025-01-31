@@ -52,14 +52,13 @@ public class Textures{
     public static Texture holeB;
     public static TextureRegion holeBRegion;
     public static TextureRegionDrawable holeBDrawable;
-
-    Textures() {
+    Textures(){
         background = new Texture(Gdx.files.internal("background.jpg"));
         planetTex = new Texture(Gdx.files.internal("planet.png"));
         planetTex2 = new Texture(Gdx.files.internal("planet2.png"));
         lighting = new Texture(Gdx.files.internal("lighting.png"));
         shadow = new Texture(Gdx.files.internal("shadow.png"));
-        sun = new Texture(Gdx.files.internal("sun.png"));
+        sun = new Texture(Gdx.files.internal("Sun.png"));
         mute = new Texture(Gdx.files.internal("mute.png"));
         pause = new Texture(Gdx.files.internal("paused.png"));
         shadowRegion = new TextureRegion(shadow, shadow.getWidth(), shadow.getHeight());

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class CelestialObject extends Entity
 {
-    protected int rand;
+    protected int randDir; //random direction for the AI
     protected Color color;
 
     private ArrayList<Position> positions;
@@ -51,7 +51,7 @@ public class CelestialObject extends Entity
     public void tick()
     {
         calculateAttraction();
-        if(!handler.getController().pausedGame)
+        if(!handler.getController().pausedGame)//just so the trail doesnt disappear while paused
             addPositions();
     }
 
@@ -59,7 +59,7 @@ public class CelestialObject extends Entity
     public void render(ShapeRenderer g)
     {
         g.begin(ShapeRenderer.ShapeType.Filled);
-
+        //drawX / drawY effected by zoom
         int zoomRadius = (int) (radius/handler.getCamera().getZoomLevel())*2;
         g.setColor(color);
         if(zoomRadius >= 2)

@@ -1,5 +1,6 @@
 package com.planetsim.game;
 
+import com.planetsim.game.PlanetSim;
 import com.planetsim.universe.*;
 import com.planetsim.camera.Camera;
 import com.planetsim.input.Controller;
@@ -66,9 +67,26 @@ public class Handler
         this.controller = controller;
     }
 
+    //some helper methods.
     public int randomWithRange(int min, int max)
     {
         int range = (max - min) + 1;
         return (int)(Math.random() * range) + min;
+    }
+
+    public long randomWithRange(long min, long max)
+    {
+        long range = (long)(max - min) + 1;
+        return (long)(Math.random() * range) + min;
+    }
+
+    public int distform(int x, int y, int x1, int y1)
+    {
+        return ((int) Math.sqrt((Math.pow((x1-x),2))+(Math.pow((y1-y),2))));
+    }
+
+    public float distform(float x, float y, float x1, float y1)
+    {
+        return ((float) Math.sqrt((Math.pow((x1 - x), 2)) + (Math.pow((y1 - y), 2))));
     }
 }

@@ -11,9 +11,9 @@ import com.planetsim.game.Handler;
 public class Controller
 {
     private Handler handler;
-    private float x, y; // Actual position in space
-    private float lastMX, lastMY; // The last mouse position
-    private float drawX, drawY; // Where it's drawn at on screen
+    private float x, y; //actual position in space
+    private float lastMX, lastMY; //The last mouse position
+    private float drawX, drawY; //where it's drawn at on screen
     Texture cursor;
     SpriteBatch batch;
 
@@ -237,7 +237,7 @@ public class Controller
             handler.getKeyManager().save = false;
         }
         if(handler.getKeyManager().load) {
-            handler.getApplication().saveFile.loadState("save.txt");
+            handler.getApplication().saveFile.loadState();
             handler.getKeyManager().load = false;
         }
     }
@@ -250,6 +250,17 @@ public class Controller
     public void render(ShapeRenderer g)
     {
         this.tick();
+
+        /*batch.setProjectionMatrix(handler.getApplication().getCamera().getCamera().combined);
+        batch.begin();
+        batch.draw(cursor, handler.getKeyManager().mX, handler.getKeyManager().mY - (30 * (handler.getCamera().getZoomLevel()  / 9.0f + (8.0f / 9.0f))), 30 * (handler.getCamera().getZoomLevel()  / 9.0f + (8.0f / 9.0f)), 30 * (handler.getCamera().getZoomLevel()  / 9.0f + (8.0f / 9.0f)));
+        batch.end();
+
+        g.begin(ShapeRenderer.ShapeType.Filled);
+        g.setColor(Color.RED);
+        g.circle((int)drawX, (int)drawY, 10 * (handler.getCamera().getZoomLevel()  / 9.0f + (8.0f / 9.0f)));
+        g.end();*/
+
         renderEntityPlacement(g);
     }
 

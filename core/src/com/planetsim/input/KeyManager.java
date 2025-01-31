@@ -146,8 +146,6 @@ public class KeyManager{
             temp /= 1.05f;
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            Gdx.app.exit();
     }
 
     private void initButtons(){
